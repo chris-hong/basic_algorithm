@@ -16,16 +16,14 @@ void BubbleSort(std::vector<int>& buf, int size) {
 void SelectSort(std::vector<int>& buf, int size) {
 	
 	for (int i = 0; i < size - 1; i++) {
-		int minValue = INT16_MAX;
-		int idx = i;
-		for (int j = i; j < size; j++) {
-			if (buf[j] < minValue) {
-				minValue = buf[j];
-				idx = j;
+		int min = i;
+		for (int j = i + 1; j < size; j++) {
+			if (buf[j] < buf[min]) {
+				min = j;
 			}
 		}
-		int temp = buf[idx];
-		buf[idx] = buf[i];
+		int temp = buf[min];
+		buf[min] = buf[i];
 		buf[i] = temp;
 	}
 }
