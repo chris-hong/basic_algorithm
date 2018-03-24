@@ -55,13 +55,25 @@ int main() {
 	Show_Buffer("After Mix");
 
 	BubbleSort(Buffer, _N);
-	Show_Buffer("After Sort");
+	Show_Buffer("After Bubble Sort");
 
 	Mix_Buffer(100);
 	Show_Buffer("After Mix");
 
 	SelectSort(Buffer, _N);
-	Show_Buffer("After Sort");
+	Show_Buffer("After Selection Sort");
+
+	Mix_Buffer(100);
+	Show_Buffer("After Mix");
+
+	InsertSort(Buffer, _N);
+	Show_Buffer("After Insertion Sort");
+
+	Mix_Buffer(100);
+	Show_Buffer("After Mix");
+
+	MergeSort(Buffer, 0, _N - 1);
+	Show_Buffer("After Merge Sort");
 
 	getchar();
 	return 0;
