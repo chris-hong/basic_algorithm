@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="heap.h" />
     <ClInclude Include="sort.h" />
   </ItemGroup>
   <ItemGroup>

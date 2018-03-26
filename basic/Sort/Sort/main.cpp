@@ -4,6 +4,7 @@
 #include <string>
 
 #include "sort.h"
+#include "heap.h"
 
 int _N = 10;
 std::vector<int> Buffer(_N);
@@ -86,6 +87,18 @@ int main() {
 
 	QuickSort(Buffer, 0, _N - 1);
 	Show_Buffer("After Sort", "Quick");
+
+	Mix_Buffer(100);
+	Show_Buffer("After Mix");
+
+	Heap heap(_N);
+	heap.MakeHeap(Buffer, _N);
+	std::cout << std::endl << "=== [ After Inserting Heap ] ===" << std::endl;
+	heap.PrintHeap(_N);
+	
+	heap.HeapSort();
+	std::cout << std::endl << "=== [ After Heap Sort ] ===" << std::endl;
+	heap.PrintHeap(_N);
 
 	getchar();
 	return 0;
