@@ -33,14 +33,20 @@ void Show_Buffer(std::string desc, std::string sortName = "") {
 	std::cout << "=== [ " << desc << " ] ===" << std::endl;
 	int i = 0;
 	
+	if (sortName != "") {
+		std::cout << "[" << sortName << "] ";
+	}
+
 	for (i = 0; i < _N; i++) {
-		if (sortName != "") {
-			std::cout << "[" << sortName << "] ";
-		}
+		
 		std::cout << Buffer[i] << " ";
 	}
 
 	if (i == _N) {
+		std::cout << std::endl;
+	}
+
+	if (sortName != "") {
 		std::cout << std::endl;
 	}
 }
@@ -55,25 +61,31 @@ int main() {
 	Show_Buffer("After Mix");
 
 	BubbleSort(Buffer, _N);
-	Show_Buffer("After Bubble Sort");
+	Show_Buffer("After Sort", "Bubble");
 
 	Mix_Buffer(100);
 	Show_Buffer("After Mix");
 
 	SelectSort(Buffer, _N);
-	Show_Buffer("After Selection Sort");
+	Show_Buffer("After Sort", "Selection");
 
 	Mix_Buffer(100);
 	Show_Buffer("After Mix");
 
 	InsertSort(Buffer, _N);
-	Show_Buffer("After Insertion Sort");
+	Show_Buffer("After Sort", "Insertion");
 
 	Mix_Buffer(100);
 	Show_Buffer("After Mix");
 
 	MergeSort(Buffer, 0, _N - 1);
-	Show_Buffer("After Merge Sort");
+	Show_Buffer("After Sort", "Merge");
+
+	Mix_Buffer(100);
+	Show_Buffer("After Mix");
+
+	QuickSort(Buffer, 0, _N - 1);
+	Show_Buffer("After Sort", "Quick");
 
 	getchar();
 	return 0;

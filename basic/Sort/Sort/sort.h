@@ -1,13 +1,17 @@
 #pragma once
 #include <vector>
 
+void Swap(std::vector<int>& buf, int i, int j) {
+	int temp = buf[i];
+	buf[i] = buf[j];
+	buf[j] = temp;
+}
+
 void BubbleSort(std::vector<int>& buf, int size) {
 	for (int i = 1; i < size; i++) {
 		for (int j = 0; j < size - i; j++) {
 			if (buf[j] > buf[j + 1]) {
-				int temp = buf[j];
-				buf[j] = buf[j + 1];
-				buf[j + 1] = temp;
+				Swap(buf, j, j + 1);
 			}
 		}
 	}
@@ -22,9 +26,7 @@ void SelectSort(std::vector<int>& buf, int size) {
 				min = j;
 			}
 		}
-		int temp = buf[min];
-		buf[min] = buf[i];
-		buf[i] = temp;
+		Swap(buf, min, i);
 	}
 }
 
@@ -85,4 +87,23 @@ void MergeSort(std::vector<int>& buf, int start, int end) {
 	}
 }
 
+void QuickSort(std::vector<int>& buf, int left, int right) {
+	int pivot = left;
+	int j = pivot;
+	int i = left + 1;
+
+	if (left < right) {
+		for (; i <= right; i++) {
+			if (buf[i] < buf[pivot]) {
+				j++;
+				Swap(buf, i, j);
+			}
+		}
+		Swap(buf, j, pivot);
+		pivot = j;
+
+		QuickSort(buf, left, pivot - 1);
+		QuickSort(buf, pivot + 1, right);
+	}
+}
 
