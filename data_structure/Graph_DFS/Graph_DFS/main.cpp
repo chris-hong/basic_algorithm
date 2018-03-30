@@ -35,9 +35,8 @@ struct Graph* MakeGraph(int vertex, int edge) {
 }
 
 void DFS(struct Graph* pGraph, std::vector<int>& bufferV, int from) {
-	bufferV[from] = 1;
-	
 	std::cout << "탐색[" << from << "]" << std::endl;
+	bufferV[from] = 1;
 	
 	for (int to = 0; to < pGraph->V; to++) {
 		// 방문하지 않았고, 연결된 노드가 있다면..
@@ -47,7 +46,6 @@ void DFS(struct Graph* pGraph, std::vector<int>& bufferV, int from) {
 	}
 
 	std::cout << "BackTracking[" << from << "]" << std::endl;
-
 }
 
 void PrintGraph(struct Graph* pGraph) {
