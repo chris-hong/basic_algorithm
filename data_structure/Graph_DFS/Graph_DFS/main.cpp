@@ -76,6 +76,7 @@ int main() {
 
 	for (int i = 0; i < pGraph->V; i++) {
 		if (!isVisitBuffer[i]) {
+			std::cout << "Vertex[" << i << "]에 신규 입장" << std::endl;
 			DFS(pGraph, isVisitBuffer, i);
 		}
 	}
