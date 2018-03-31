@@ -4,7 +4,7 @@
 struct Graph {
 	int V;
 	int E;
-	std::vector<std::vector<int>> Adj;
+	std::vector<std::vector<bool>> Adj;
 };
 
 struct Graph* MakeGraph(int vertex, int edge) {
@@ -14,7 +14,7 @@ struct Graph* MakeGraph(int vertex, int edge) {
 	pGraph->E = edge;
 
 	for (int i = 0; i < vertex; i++) {
-		pGraph->Adj.push_back(std::vector<int>(vertex));
+		pGraph->Adj.push_back(std::vector<bool>(vertex, false));
 	}
 
 	for (int i = 0; i < edge; i++) {
@@ -27,21 +27,22 @@ struct Graph* MakeGraph(int vertex, int edge) {
 		std::cin >> to;
 		std::cin.get();
 
-		pGraph->Adj[from][to] = 1;
-		pGraph->Adj[to][from] = 1;
+		// 무방향성 그래프라고 가정하고 양방향 true
+		pGraph->Adj[from][to] = true;
+		pGraph->Adj[to][from] = true;
 	}
 
 	return pGraph;
 }
 
-void DFS(struct Graph* pGraph, std::vector<int>& bufferV, int from) {
+void DFS(struct Graph* pGraph, std::vector<bool>& isVisitBuffer, int from) {
 	std::cout << "탐색[" << from << "]" << std::endl;
-	bufferV[from] = 1;
+	isVisitBuffer[from] = true;
 	
 	for (int to = 0; to < pGraph->V; to++) {
 		// 방문하지 않았고, 연결된 노드가 있다면..
-		while (!bufferV[to] && pGraph->Adj[from][to]) {
-			DFS(pGraph, bufferV, to);
+		while (!isVisitBuffer[to] && pGraph->Adj[from][to]) {
+			DFS(pGraph, isVisitBuffer, to);
 		}
 	}
 
@@ -71,11 +72,11 @@ int main() {
 	struct Graph* pGraph = MakeGraph(vertex, edge);
 	PrintGraph(pGraph);
 
-	std::vector<int> bufferV(pGraph->V, 0);
+	std::vector<bool> isVisitBuffer(pGraph->V, 0);
 
 	for (int i = 0; i < pGraph->V; i++) {
-		if (!bufferV[i]) {
-			DFS(pGraph, bufferV, i);
+		if (!isVisitBuffer[i]) {
+			DFS(pGraph, isVisitBuffer, i);
 		}
 	}
 

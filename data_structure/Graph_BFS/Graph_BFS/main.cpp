@@ -5,7 +5,7 @@
 struct Graph {
 	int V;
 	int E;
-	std::vector<std::vector<int>> Adj;
+	std::vector<std::vector<bool>> Adj;
 };
 
 struct Graph* MakeGraph(int vertex, int edge) {
@@ -15,7 +15,7 @@ struct Graph* MakeGraph(int vertex, int edge) {
 	pGraph->E = edge;
 
 	for (int i = 0; i < vertex; i++) {
-		pGraph->Adj.push_back(std::vector<int>(vertex));
+		pGraph->Adj.push_back(std::vector<bool>(vertex, false));
 	}
 
 	for (int i = 0; i < edge; i++) {
@@ -28,26 +28,27 @@ struct Graph* MakeGraph(int vertex, int edge) {
 		std::cin >> to;
 		std::cin.get();
 
-		pGraph->Adj[from][to] = 1;
-		pGraph->Adj[to][from] = 1;
+		// 무방향성 그래프라고 가정하고 양방향 true
+		pGraph->Adj[from][to] = true;
+		pGraph->Adj[to][from] = true;
 	}
 
 	return pGraph;
 }
 
-void BFS(struct Graph* pGraph, std::vector<int>& bufferV, int entry) {
+void BFS(struct Graph* pGraph, std::vector<bool>& isVisitBuffer, int entry) {
 	std::queue<int> Q;
 	Q.push(entry);		// 자기 자신을 넣는다. 처음 한번 시작하기 위하여 PUSH
 
 	while (!Q.empty()) {
 		int from = Q.front(); Q.pop();
 
-		if (!bufferV[from]) {
+		if (!isVisitBuffer[from]) {
 			std::cout << "탐색[" << from << "]" << std::endl;
-			bufferV[from] = 1;
+			isVisitBuffer[from] = true;
 			
 			for (int to = 0; to < pGraph->V; to++) {
-				if (!bufferV[to] && pGraph->Adj[from][to]) {
+				if (!isVisitBuffer[to] && pGraph->Adj[from][to]) {
 					Q.push(to);
 				}
 			}
@@ -78,11 +79,11 @@ int main() {
 	struct Graph* pGraph = MakeGraph(vertex, edge);
 	PrintGraph(pGraph);
 
-	std::vector<int> bufferV(pGraph->V, 0);
+	std::vector<bool> isVisitBuffer(pGraph->V, 0);
 
 	for (int i = 0; i < pGraph->V; i++) {
-		if (!bufferV[i]) {
-			BFS(pGraph, bufferV, i);
+		if (!isVisitBuffer[i]) {
+			BFS(pGraph, isVisitBuffer, i);
 		}
 	}
 
