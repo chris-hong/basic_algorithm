@@ -103,6 +103,7 @@ vector<struct DisjointSet*>* MakeDisjointSet(int _N) {
 	return pDisjointSet;
 }
 
+//int Kruskal(struct Graph* pGraph, vector<struct DisjointSet*>* pDisjointSet) {
 int Kruskal(vector<struct DisjointSet*>* pDisjointSet) {
 	int totalWeight = 0;
 
@@ -118,6 +119,7 @@ int Kruskal(vector<struct DisjointSet*>* pDisjointSet) {
 		// 두 노드의 최상위 부모가 다르다는 의미는 서로 연결되지 않았다는 의미
 		if (Dis_Find(pSet1) != Dis_Find(pSet2)) {
 			Dis_Union(pSet1, pSet2);
+			//totalWeight += pGraph->Adj[from][to];
 			totalWeight += weight;
 		}
 
@@ -132,6 +134,7 @@ int main() {
 	
 	vector<struct DisjointSet*>* pDisjointSet = MakeDisjointSet(pGraph->V);
 	
+	//int totalWeight = Kruskal(pGraph, pDisjointSet);
 	int totalWeight = Kruskal(pDisjointSet);
 	
 	cout << "Total weight : " << totalWeight << endl;
