@@ -5,7 +5,6 @@
 
 #include "sort.h"
 #include "heap.h"
-#include "heap2.h"
 
 int _N = 10;
 std::vector<int> Buffer(_N);
@@ -101,24 +100,24 @@ int main() {
 	std::cout << std::endl << "=== [ After Heap Sort ] ===" << std::endl;
 	heap.PrintHeap(_N);*/
 
-	Heap2 heap2(_N, true);	// minheap
-	heap2.PushHeap(3);
-	heap2.PushHeap(2);
-	heap2.PushHeap(1);
-	heap2.PushHeap(4);
-	heap2.PushHeap(6);
-	heap2.PushHeap(5);
-	heap2.PushHeap(7);
-	heap2.PushHeap(10);
-	heap2.PushHeap(9);
-	heap2.PushHeap(8);
-	heap2.PushHeap(11);
+	Heap heap(_N, true);	// minheap
+	heap.PushHeap(3);
+	heap.PushHeap(2);
+	heap.PushHeap(1);
+	heap.PushHeap(4);
+	heap.PushHeap(6);
+	heap.PushHeap(5);
+	heap.PushHeap(7);
+	heap.PushHeap(10);
+	heap.PushHeap(9);
+	heap.PushHeap(8);
+	heap.PushHeap(11);
 
-	heap2.PrintNode();
+	heap.PrintNode();
 
 	for (int i = 0; i < 11; i++) {
-		cout << "POP[" << i << "]: " << heap2.PopHeap() << endl;
-		heap2.PrintNode();
+		cout << "POP[" << i << "]: " << heap.PopHeap() << endl;
+		heap.PrintNode();
 		getchar();
 	}
 
