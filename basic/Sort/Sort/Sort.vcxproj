@@ -110,8 +110,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="bubbleSort.h" />
     <ClInclude Include="heap.h" />
-    <ClInclude Include="sort.h" />
+    <ClInclude Include="insertSort.h" />
+    <ClInclude Include="mergeSort.h" />
+    <ClInclude Include="quickSort.h" />
+    <ClInclude Include="selectSort.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

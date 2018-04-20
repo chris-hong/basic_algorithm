@@ -1,26 +1,34 @@
 #include <iostream>
-#include <vector>
 #include <random>
 #include <string>
 
-#include "sort.h"
+#include "bubbleSort.h"
+#include "selectSort.h"
+#include "insertSort.h"
+#include "mergeSort.h"
+#include "quickSort.h"
 #include "heap.h"
 
-int _N = 10;
-std::vector<int> Buffer(_N);
+int N = 10;
+int* Buffer;
 
-void Initialize_Buffer() {
+void Initialize_Buffer(int _N) {
+	Buffer = new int[_N];
 	for (int i = 0; i < _N; i++) {
 		Buffer[i] = i + 1;
 	}
 }
 
-void Mix_Buffer(int count) {
+void Uninitialize_Buffer() {
+	delete Buffer;
+}
+
+void Mix_Buffer(int mixCount, int _range) {
 	std::random_device rn;
 	std::mt19937_64 rnd(rn());
-	std::uniform_int_distribution<int> range(0, _N - 1);
+	std::uniform_int_distribution<int> range(0, _range - 1);
 
-	for (int i = 0; i < count; i++) {
+	for (int i = 0; i < mixCount; i++) {
 		int pIdx = range(rnd);
 		int nIdx = range(rnd);
 		int temp = Buffer[pIdx];
@@ -30,7 +38,7 @@ void Mix_Buffer(int count) {
 	
 }
 
-void Show_Buffer(std::string desc, std::string sortName = "") {
+void Show_Buffer(int _N, std::string desc, std::string sortName = "") {
 	std::cout << "=== [ " << desc << " ] ===" << std::endl;
 	int i = 0;
 	
@@ -39,7 +47,6 @@ void Show_Buffer(std::string desc, std::string sortName = "") {
 	}
 
 	for (i = 0; i < _N; i++) {
-		
 		std::cout << Buffer[i] << " ";
 	}
 
@@ -55,71 +62,59 @@ void Show_Buffer(std::string desc, std::string sortName = "") {
 
 int main() {
 
-	/*Initialize_Buffer();
-	Show_Buffer("Initializatin");
+	Initialize_Buffer(N);
+	Show_Buffer(N, "Initializatin");
 
-	Mix_Buffer(100);
-	Show_Buffer("After Mix");
+	Mix_Buffer(100, N);
+	Show_Buffer(N, "After Mix");
 
-	BubbleSort(Buffer, _N);
-	Show_Buffer("After Sort", "Bubble");
+	BubbleSort(Buffer, N);
+	Show_Buffer(N, "After Sort", "Bubble");
 
-	Mix_Buffer(100);
-	Show_Buffer("After Mix");
+	Mix_Buffer(100, N);
+	Show_Buffer(N, "After Mix");
 
-	SelectSort(Buffer, _N);
-	Show_Buffer("After Sort", "Selection");
+	SelectSort(Buffer, N);
+	Show_Buffer(N, "After Sort", "Selection");
 
-	Mix_Buffer(100);
-	Show_Buffer("After Mix");
+	Mix_Buffer(100, N);
+	Show_Buffer(N, "After Mix");
 
-	InsertSort(Buffer, _N);
-	Show_Buffer("After Sort", "Insertion");
+	InsertSort(Buffer, N);
+	Show_Buffer(N, "After Sort", "Insertion");
 
-	Mix_Buffer(100);
-	Show_Buffer("After Mix");
+	Mix_Buffer(100, N);
+	Show_Buffer(N, "After Mix");
 
-	MergeSort(Buffer, 0, _N - 1);
-	Show_Buffer("After Sort", "Merge");
+	MergeSort(Buffer, 0, N - 1, N);
+	Show_Buffer(N, "After Sort", "Merge");
 
-	Mix_Buffer(100);
-	Show_Buffer("After Mix");
+	Mix_Buffer(100, N);
+	Show_Buffer(N, "After Mix");
 
-	QuickSort(Buffer, 0, _N - 1);
-	Show_Buffer("After Sort", "Quick");
+	QuickSort(Buffer, 0, N - 1);
+	Show_Buffer(N, "After Sort", "Quick");
 
-	Mix_Buffer(100);
-	Show_Buffer("After Mix");
+	Mix_Buffer(100, N);
+	Show_Buffer(N, "After Mix");
 
-	Heap heap(_N);
-	heap.MakeHeap(Buffer, _N);
-	std::cout << std::endl << "=== [ After Inserting Heap ] ===" << std::endl;
-	heap.PrintHeap(_N);
+
+	Heap heap(N, true);	// minheap
 	
-	heap.HeapSort();
-	std::cout << std::endl << "=== [ After Heap Sort ] ===" << std::endl;
-	heap.PrintHeap(_N);*/
-
-	Heap heap(_N, true);	// minheap
-	heap.PushHeap(3);
-	heap.PushHeap(2);
-	heap.PushHeap(1);
-	heap.PushHeap(4);
-	heap.PushHeap(6);
-	heap.PushHeap(5);
-	heap.PushHeap(7);
-	heap.PushHeap(10);
-	heap.PushHeap(9);
-	heap.PushHeap(8);
-	heap.PushHeap(11);
-
-	heap.PrintNode();
-
-	for (int i = 0; i < 11; i++) {
-		cout << "POP[" << i << "]: " << heap.PopHeap() << endl;
-		heap.PrintNode();
-		getchar();
+	cout << "Push to Heap" << endl;
+	for (int i = 0; i < N; i++) {
+		cout << Buffer[i] << " ";
+		heap.PushHeap(Buffer[i]);
 	}
+	cout << endl;
+
+	cout << "Pop from heap" << endl;
+	for (int i = 0; i < N; i++) {
+		cout << heap.PopHeap() << " ";
+	}
+	cout << endl;
+
+	Uninitialize_Buffer();
 
 	getchar();
 	return 0;

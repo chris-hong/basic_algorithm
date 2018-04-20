@@ -15,10 +15,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sort.h">
+    <ClInclude Include="heap.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="heap.h">
+    <ClInclude Include="utils.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="bubbleSort.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="selectSort.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="insertSort.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mergeSort.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="quickSort.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
