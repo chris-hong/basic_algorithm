@@ -9,7 +9,8 @@
 #include "quickSort.h"
 #include "heap.h"
 
-int N = 10;
+int N = 100;
+int MIXCOUNT = 1000;
 int* Buffer;
 
 void Initialize_Buffer(int _N) {
@@ -64,40 +65,39 @@ int main() {
 
 	Initialize_Buffer(N);
 	Show_Buffer(N, "Initializatin");
-
-	Mix_Buffer(100, N);
+	
+	Mix_Buffer(MIXCOUNT, N);
 	Show_Buffer(N, "After Mix");
 
 	BubbleSort(Buffer, N);
 	Show_Buffer(N, "After Sort", "Bubble");
 
-	Mix_Buffer(100, N);
+	Mix_Buffer(MIXCOUNT, N);
 	Show_Buffer(N, "After Mix");
 
 	SelectSort(Buffer, N);
 	Show_Buffer(N, "After Sort", "Selection");
 
-	Mix_Buffer(100, N);
+	Mix_Buffer(MIXCOUNT, N);
 	Show_Buffer(N, "After Mix");
 
 	InsertSort(Buffer, N);
 	Show_Buffer(N, "After Sort", "Insertion");
 
-	Mix_Buffer(100, N);
+	Mix_Buffer(MIXCOUNT, N);
 	Show_Buffer(N, "After Mix");
 
 	MergeSort(Buffer, 0, N - 1, N);
 	Show_Buffer(N, "After Sort", "Merge");
 
-	Mix_Buffer(100, N);
+	Mix_Buffer(MIXCOUNT, N);
 	Show_Buffer(N, "After Mix");
 
 	QuickSort(Buffer, 0, N - 1);
 	Show_Buffer(N, "After Sort", "Quick");
 
-	Mix_Buffer(100, N);
+	Mix_Buffer(MIXCOUNT, N);
 	Show_Buffer(N, "After Mix");
-
 
 	Heap heap(N, true);	// minheap
 	

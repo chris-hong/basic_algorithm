@@ -5,7 +5,7 @@ void Merge(int buf[], int start, int mid, int end, int _N) {
 
 	int s = start;
 	int m = mid + 1;
-	int idx = 0;
+	int idx = start;
 
 	while (s <= mid && m <= end) {
 		if (buf[s] < buf[m]) {
@@ -31,7 +31,7 @@ void Merge(int buf[], int start, int mid, int end, int _N) {
 	}
 
 	for (int i = start; i <= end; i++) {
-		buf[i] = tempBuf[i - start];
+		buf[i] = tempBuf[i];
 	}
 
 	delete tempBuf;
