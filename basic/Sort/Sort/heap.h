@@ -91,17 +91,17 @@ void Heap::HeapUp(int idx) {
 	// 부모가 없으면 끝
 	if (parentIdx == -1) return;
 
-	// 부모가 나보다 작아야 한다. 
+	// 부모가 자식보다 작아야 한다. 
 	if (bMinHeap) {
-		// 부모가 나보다 크면 바꾼다.
+		// 부모가 자식보다 크면 SWAP
 		if (mNodeList[parentIdx] > mNodeList[idx]) {
 			SwapNode(idx, parentIdx);
 			HeapUp(parentIdx);
 		}
 	}
-	// 부모가 나보다 커야 한다.
+	// 부모가 자식보다 커야 한다.
 	else {
-		// 부모가 나보다 작으면 바꾼다.
+		// 부모가 자식보다 작으면 SWAP
 		if (mNodeList[parentIdx] < mNodeList[idx]) {
 			SwapNode(idx, parentIdx);
 			HeapUp(parentIdx);
@@ -113,45 +113,45 @@ void Heap::HeapDown(int idx) {
 	int leftChildIdx = GetLeftChildIndex(idx);
 	int rightChildIdx = GetRightChildIndex(idx);
 
-	// 자식이 없으면 끝
+	// 자식이 모두 없으면 끝
 	if (leftChildIdx == -1 && rightChildIdx == -1) return;
 
-	// 자식이 나보다 커야한다.
+	// 부모는 자식들보다 작아야 한다.
 	if (bMinHeap) {
-		// 자식이 나보다 작으면 바꾼다.
-		int min = idx;
+		// 부모보다 작은 자식이 있으면 SWAP
+		int minIndex = idx;
 
 		// left 검사
-		if (leftChildIdx != -1 && mNodeList[leftChildIdx] < mNodeList[min]) {
-			min = leftChildIdx;
+		if (leftChildIdx != -1 && mNodeList[leftChildIdx] < mNodeList[minIndex]) {
+			minIndex = leftChildIdx;
 		}
 		// right 검사
-		if (rightChildIdx != -1 && mNodeList[rightChildIdx] < mNodeList[min]) {
-			min = rightChildIdx;
+		if (rightChildIdx != -1 && mNodeList[rightChildIdx] < mNodeList[minIndex]) {
+			minIndex = rightChildIdx;
 		}
 
-		if (min == leftChildIdx || min == rightChildIdx) {
-			SwapNode(idx, min);
-			HeapDown(min);
+		if (minIndex == leftChildIdx || minIndex == rightChildIdx) {
+			SwapNode(idx, minIndex);
+			HeapDown(minIndex);
 		}
 	}
-	// 자식이 나보다 작아야 한다.
+	// 부모는 자식들보다 커야 한다.
 	else {
-		// 자식이 나보다 크면 바꾼다.
-		int max = idx;
+		// 부모보다 큰 자식이 있으면 SWAP
+		int maxIndex = idx;
 
 		// left 검사
-		if (leftChildIdx != -1 && mNodeList[leftChildIdx] > mNodeList[max]) {
-			max = leftChildIdx;
+		if (leftChildIdx != -1 && mNodeList[leftChildIdx] > mNodeList[maxIndex]) {
+			maxIndex = leftChildIdx;
 		}
 		// rifht 검사
-		if (rightChildIdx != -1 && mNodeList[rightChildIdx] > mNodeList[max]) {
-			max = rightChildIdx;
+		if (rightChildIdx != -1 && mNodeList[rightChildIdx] > mNodeList[maxIndex]) {
+			maxIndex = rightChildIdx;
 		}
 
-		if (max == leftChildIdx || max == rightChildIdx) {
-			SwapNode(idx, max);
-			HeapDown(max);
+		if (maxIndex == leftChildIdx || maxIndex == rightChildIdx) {
+			SwapNode(idx, maxIndex);
+			HeapDown(maxIndex);
 		}
 	}
 }
