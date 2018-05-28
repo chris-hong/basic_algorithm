@@ -4,8 +4,8 @@
 #include "Permutation.h"
 #include "Combination.h"
 
-int _N = 4;
-int _R = 3;
+int _N = 6;
+int _R = 6;
 
 std::vector<int> buffer(_R);
 std::vector<int> pBuffer(_N);
@@ -23,7 +23,8 @@ int main() {
 	//Repeated_Combination(buffer, 0, _N, _R, 0);
 
 	Make_PBuffer(pBuffer, _N);
-	Permutation(pBuffer, 0, _N, _R);
+	//Permutation(pBuffer, 0, _N, _R);
+	Dictionary_Permutation(pBuffer, 0, _N, _R);
 
 	//Repeated_Permutation(buffer, 0, _N, _R);
 
