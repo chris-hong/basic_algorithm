@@ -10,7 +10,7 @@ public:
 	Stack();
 	~Stack();
 	void Push(int num);
-	int Seek();
+	int Peek();
 	int Pop();
 	int getSize();
 
@@ -43,7 +43,7 @@ void Stack::Push(int num) {
 	mSize += 1;
 }
 
-int Stack::Seek() {
+int Stack::Peek() {
 	if (!mSize || !pTop) return INT32_MIN;
 	return pTop->num;
 }
