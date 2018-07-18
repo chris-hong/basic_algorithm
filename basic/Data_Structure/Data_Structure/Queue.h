@@ -9,8 +9,8 @@ struct Queue {
 public:
 	Queue();
 	~Queue();
-	void Push(int num);
-	int Pop();
+	void Enqueue(int num);
+	int Dequeue();
 	int getSize();
 private:
 	int mSize;
@@ -24,11 +24,11 @@ Queue::Queue() {
 
 Queue::~Queue() {
 	for (int i = 0; i < mSize; i++) {
-		Pop();
+		Dequeue();
 	}
 }
 
-void Queue::Push(int num) {
+void Queue::Enqueue(int num) {
 	struct QueueNode* pNode = new QueueNode();
 	pNode->num = num;
 	pNode->pNext = NULL;
@@ -45,7 +45,7 @@ void Queue::Push(int num) {
 	mSize += 1;
 }
 
-int Queue::Pop() {
+int Queue::Dequeue() {
 	if (!mSize || (!pFirst && !pLast)) return INT32_MIN;
 
 	int ret = pFirst->num;
