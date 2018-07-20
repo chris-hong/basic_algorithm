@@ -16,6 +16,7 @@ private:
 
 Stack::Stack() {
 	mSize = 0;
+	pTop = NULL;
 }
 
 Stack::~Stack() {

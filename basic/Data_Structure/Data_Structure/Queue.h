@@ -16,6 +16,8 @@ private:
 
 Queue::Queue() {
 	mSize = 0;
+	pFirst = NULL;
+	pLast = NULL;
 }
 
 Queue::~Queue() {
