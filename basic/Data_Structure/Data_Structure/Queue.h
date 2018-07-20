@@ -1,21 +1,17 @@
 #pragma once
+#include "Common.h"
 
-struct QueueNode {
-	int num;
-	struct QueueNode* pNext;
-};
-
-struct Queue {
+class Queue {
 public:
 	Queue();
 	~Queue();
 	void Enqueue(int num);
 	int Dequeue();
-	int getSize();
+	int GetSize();
 private:
 	int mSize;
-	struct QueueNode* pFirst;
-	struct QueueNode* pLast;
+	struct Node* pFirst;
+	struct Node* pLast;
 };
 
 Queue::Queue() {
@@ -23,42 +19,36 @@ Queue::Queue() {
 }
 
 Queue::~Queue() {
-	for (int i = 0; i < mSize; i++) {
+	while (GetSize() > 0) {
 		Dequeue();
 	}
 }
 
 void Queue::Enqueue(int num) {
-	struct QueueNode* pNode = new QueueNode();
+	struct Node* pNode = new Node();
 	pNode->num = num;
 	pNode->pNext = NULL;
 
-	if (!mSize || (!pFirst && !pLast)) {
-		pFirst = pNode;
-		pLast = pNode;
-	}
-	else {
-		pLast->pNext = pNode;
-		pLast = pNode;
-	}
-
+	if (!pFirst) pFirst = pNode;
+	if (pLast) pLast->pNext = pNode;
+	pLast = pNode;
 	mSize += 1;
 }
 
 int Queue::Dequeue() {
-	if (!mSize || (!pFirst && !pLast)) return INT32_MIN;
-
+	if (!pFirst) return INT32_MIN;
 	int ret = pFirst->num;
-	
-	struct QueueNode* pTemp = pFirst;
-	if (mSize == 1 && (pFirst == pLast)) pLast = pFirst->pNext;
+
+	struct Node* pTemp = pFirst;
 	pFirst = pFirst->pNext;
 	delete pTemp;
-
 	mSize -= 1;
+
+	if (!pFirst) pLast = NULL;
+
 	return ret;
 }
 
-int Queue::getSize() {
+int Queue::GetSize() {
 	return mSize;
 }

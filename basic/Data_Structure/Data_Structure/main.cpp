@@ -15,9 +15,9 @@ int main() {
 	}
 
 	for (int i = 0; i < 100; i++) {
-		cout << "STACK[" << stack.getSize() << "]: ";
+		cout << "STACK[" << stack.GetSize() << "]: ";
 		cout << stack.Pop() << endl;
-		cout << "QUEUE[" << queue.getSize() << "]: ";
+		cout << "QUEUE[" << queue.GetSize() << "]: ";
 		cout << queue.Dequeue() << endl;
 	}
 
@@ -27,9 +27,9 @@ int main() {
 	}
 
 	for (int i = 0; i < 100; i++) {
-		cout << "STACK[" << stack.getSize() << "]: ";
+		cout << "STACK[" << stack.GetSize() << "]: ";
 		cout << stack.Pop() << endl;
-		cout << "QUEUE[" << queue.getSize() << "]: ";
+		cout << "QUEUE[" << queue.GetSize() << "]: ";
 		cout << queue.Dequeue() << endl;
 	}
 

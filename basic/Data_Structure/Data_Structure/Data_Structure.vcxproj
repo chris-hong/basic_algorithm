@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Common.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />
