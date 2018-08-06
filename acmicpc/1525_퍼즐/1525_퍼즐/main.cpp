@@ -70,17 +70,17 @@ public:
 	bool IsExist(long long num);
 	void Insert(long long num);
 private:
-	struct Node* pHead[10000];
+	struct Node* pHead[200000];
 };
 
 HashTable::HashTable() {
-	for (int i = 0; i < 10000; i++) {
+	for (int i = 0; i < 200000; i++) {
 		pHead[i] = NULL;
 	}
 }
 
 HashTable::~HashTable() {
-	for (int i = 0; i < 10000; i++) {
+	for (int i = 0; i < 200000; i++) {
 		while (pHead[i]) {
 			struct Node* pTemp = pHead[i];
 			pHead[i] = pHead[i]->pNext;
@@ -90,7 +90,7 @@ HashTable::~HashTable() {
 }
 
 bool HashTable::IsExist(long long num) {
-	int tok = num % 10000;
+	int tok = num % 200000;
 	bool ret = false;
 
 	struct Node* pIterator = pHead[tok];
@@ -103,7 +103,7 @@ bool HashTable::IsExist(long long num) {
 }
 
 void HashTable::Insert(long long num) {
-	int tok = num % 10000;
+	int tok = num % 200000;
 
 	struct Node* pNode = new Node();
 	pNode->num = num;
