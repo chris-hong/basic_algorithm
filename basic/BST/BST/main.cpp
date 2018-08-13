@@ -32,5 +32,7 @@ int main() {
 		bst.Remove(buffer[i]);
 	}
 
+	delete buffer;
+
 	return 0;
 }
