@@ -11,7 +11,7 @@ int main() {
 	std::mt19937_64 rand(rd());
 	std::uniform_int_distribution<int> range(0, MAX_RANGE - 1);
 
-	AVL avl;
+	AVL<int> avl;
 	int count = 0;
 
 	while (count < MAX) {
