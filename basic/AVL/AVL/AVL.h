@@ -120,12 +120,12 @@ struct Node* AVL::_RL(struct Node* pNode) {
 struct Node* AVL::_Balance(struct Node* pNode) {
 	int diff = _Difference(pNode);
 	if (diff > 1) {
-		if (_Difference(pNode->pLeft) > 0) pNode = _LL(pNode);
-		else pNode = _LR(pNode);
+		if (_Difference(pNode->pLeft) > 0) return _LL(pNode);
+		else return _LR(pNode);
 	}
 	else if (diff < -1) {
-		if (_Difference(pNode->pRight) < 0) pNode = _RR(pNode);
-		else pNode = _RL(pNode);
+		if (_Difference(pNode->pRight) < 0) return _RR(pNode);
+		else return _RL(pNode);
 	}
 	return pNode;
 }
