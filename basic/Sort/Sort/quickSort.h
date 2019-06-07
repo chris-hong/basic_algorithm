@@ -2,6 +2,11 @@
 
 #include "utils.h"
 
+// Quick Sort는 최종적으로 Pivot으로 정한 숫자기준으로 왼쪽에는 작은 수, 오른쪽에는 큰 수를 두는 작업의 반복
+// ## 명심 ## 진행과정에서 front와 back 사이에는 Pivot보다 큰 숫자들이 위치함.
+// 따라서 pivot과 비교해서 작은 숫자가 발견되면 (back + 1)<- pivot보다 큰 숫자와 방금 찾은 작은 숫자의 위치를 바꾸어 버림. 
+// 마지막으로 Pivot과 back의 SWAP으로 자기위치 찾아주기가 목표
+
 int Partition(int buf[], int left, int right) {
 	int pivot = left;		// pivot은 left로 설정
 	int front = left + 1;	// front는 전체를 순회하며 값 비교를 할 포인터
