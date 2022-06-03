@@ -7,6 +7,8 @@ project ("codepass")
 
 add_subdirectory(1_gugudan)
 add_subdirectory(2_gugudan)
+add_subdirectory(3_num_rect)
+add_subdirectory(4_num_rect)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET 1_gugudan PROPERTY CXX_STANDARD 20)
