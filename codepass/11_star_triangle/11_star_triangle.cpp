@@ -4,11 +4,6 @@
 
 using namespace std;
 
-bool check_middle(int idx, int N)
-{
-	return N / 2 + 1 > idx;
-}
-
 bool check_input_N(int input)
 {
 	if (input < 1 || input > 100 || input % 2 == 0)
